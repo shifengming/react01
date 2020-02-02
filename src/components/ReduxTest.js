@@ -1,18 +1,10 @@
 import React from 'react';
 // import store from '../store';
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
+import { add, minus ,asyncAdd } from '../store/count.redux'
 
-const mapStateToProps = state => ({num: state});
-const mapDispatchToProps = {
-    add: () => ({type:'add'}),
-    minus: () => ({type: "minus"}),
-    anyncAdd: () => dispatch => {
-        //做异步操作
-        setTimeout(() => {
-            dispatch({type:"add"});
-        },1500);
-    }
-}
+const mapStateToProps = state => ({num: state.counter });
+const mapDispatchToProps = { add, minus, asyncAdd };
 
 function ReduxTest({num,add,minus}) {
     
@@ -22,7 +14,7 @@ function ReduxTest({num,add,minus}) {
             <div>
                 <button onClick={minus}>-</button>
                 <button onClick={add}>+</button>
-                {/* <button onClick={asyncAdd}>AsyncAdd</button> */}
+                <button onClick={asyncAdd}>AsyncAdd</button>
             </div>
         </div>
     )
